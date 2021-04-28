@@ -19,7 +19,10 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('MainApp.urls')), #telling project we have file called url.py in main app, include everything in that file with this one
+    path('users/', include('users.urls')),
 ]
 
 #controls all the URLs for the entire project (can have multiple web apps)
 #we need to tell what URLs to use for which apps
+
+#1 urls --> #2 views --> #3 create template html file to bring in data from view

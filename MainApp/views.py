@@ -53,3 +53,20 @@ def new_entry(request, topic_id):
 
     context = {'form':form, 'topic':topic}
     return render(request, 'MainApp/new_entry.html', context)
+
+
+def edit_entry(request, entry_id): 
+    entry = Entry.objects.get(id = entry_id)
+    topic = entry.topic 
+
+    if request.method != 'POST': #meaning its get --> loading up what is exisitng
+        form = EntryForm(instance = entry) #loads up an empty form, but don't want blank because we want it to be loaded with the info that is already there
+        #getting entry from top of def edit_entry
+    else:
+        form = EntryForm(instance = entry, data = request.POST) #post request, whatever is in the form put to webpage
+        if form.is_valid():
+            form.save()
+            return redirect('MainApp:topic', topic_id = topic.id) #to load up the topic page, need the topic ID, we have topic so topic.topicid gets up ID of that paritcular topic
+    #context want to give entry, topic, and form
+    context = {'entry':entry, 'topic':topic, 'form':form} #order does not matter
+    return render(request, 'MainApp/edit_entry.html', context)

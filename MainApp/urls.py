@@ -12,6 +12,7 @@ urlpatterns = [
     path('topics/<int:topic_id>/', views.topic, name='topic'),
     path('new_topic/', views.new_topic, name='new_topic'),
     path('new_entry/<int:topic_id>/', views.new_entry, name='new_entry'),
+    path('edit_entry/<int:entry_id>/', views.edit_entry, name='edit_entry'),
 ]
 
 
@@ -19,6 +20,7 @@ urlpatterns = [
 
 
 
+#1 urls --> #2 views --> #3 create template html file to bring in data from view
 #anytime create new page, 
 # urls.py specify addy or location of webpage along w view of location --> urls in app folder pertaining to this particular app
 # views.py write funciton to interact w database
